@@ -7,10 +7,10 @@ trigger:
 - master
 
 stages:
-- stage: CI-Frontend
+- stage: CI_Frontend
   displayName: 'CI for Frontend'
   jobs:
-  - job: --CI--
+  - job: __CI__
     displayName: 'CI JOB for Frontend'
     steps:
       - task: NodeTool@0
