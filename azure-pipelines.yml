@@ -6,16 +6,39 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
+stages:
+- stage: CI-Frontend
+  displayName: 'CI for Frontend'
+  jobs:
+  - job: --CI--
+    displayName: 'CI JOB for Frontend'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install Node.js'
+      - script: npm install
+        displayName: install node dependencies
+      - script: npm run build
+        displayName: RUN BUILD
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+# - stage: CD-Frontend
+#   displayName: 'CD for Frontend'
+#   jobs:
+#   - job: --CD--
+#   - job: B2
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+# container:
+# pool:
+#   vmImage: ubuntu-latest
+
+# steps:
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '10.x'
+#   displayName: 'Install Node.js'
+
+# - script: |
+#     npm install
+#     npm run build
+#   displayName: 'npm install and build'
