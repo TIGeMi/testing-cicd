@@ -31,7 +31,7 @@ stages:
     condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/Release')
     jobs:
       - job: _CD_
-        displayName: 'CI JOB for Frontend'
+        displayName: 'CD JOB for Frontend'
         steps:
           - script: npm start
             displayName: Run if release task
