@@ -26,7 +26,7 @@ stages:
         displayName: RUN BUILD
       - script: echo variables['Build.SourceBranch']
 
-- stage: CD-Frontend
+- stage: CD_Frontend
   displayName: 'CD for Frontend'
   condition: startsWith(variables['Build.SourceBranch'], 'Release')
   jobs:
