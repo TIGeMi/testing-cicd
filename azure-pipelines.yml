@@ -4,7 +4,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+  branches:
+    include:
+      - master
+      - Release*
 
 stages:
 - stage: CI_Frontend
@@ -21,12 +24,17 @@ stages:
         displayName: install node dependencies
       - script: npm run build
         displayName: RUN BUILD
+      - script: echo variables['Build.SourceBranch']
 
-# - stage: CD-Frontend
-#   displayName: 'CD for Frontend'
-#   jobs:
-#   - job: --CD--
-#   - job: B2
+- stage: CD-Frontend
+  displayName: 'CD for Frontend'
+  condition: startsWith(variables['Build.SourceBranch'], 'Release')
+  jobs:
+  - job: _CD_
+    displayName: 'CI JOB for Frontend'
+    steps:
+      - script: npm start
+        displayName: Run if release task
 
 # container:
 # pool:
