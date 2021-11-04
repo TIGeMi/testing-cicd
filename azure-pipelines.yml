@@ -28,7 +28,7 @@ stages:
 
   - stage: CD_Frontend
     displayName: 'CD for Frontend'
-    condition: startsWith(variables['Build.SourceBranch'], 'Release')
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/Release')
     jobs:
       - job: _CD_
         displayName: 'CI JOB for Frontend'
